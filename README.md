@@ -117,21 +117,17 @@ The icons are already included, but if you need to regenerate them:
 
 3. **Redirect to Freedium**
    - **Click the extension icon** in your Chrome toolbar
-   - A popup window will open showing:
-     - Current status: "Medium Article Detected" (in green) or "Not a Medium Article"
-     - A "Redirect to Freedium" button (enabled only on Medium articles)
-     - Preview of the target URL
-   - **Click the "Redirect to Freedium" button**
-   - You'll be automatically redirected to the freedium-mirror.cfd version of the article
+   - If you're on a Medium article, it will **automatically open the freedium-mirror.cfd version in a new tab**
+   - Your current tab stays open, so you can compare both versions
+   - If you're not on a Medium article, nothing happens (no redirect)
 
 ### Example
 
 1. You visit: `https://medium.com/@techwriter/awesome-article`
-2. Extension badge turns **green (✓)**
-3. You click the extension icon
-4. Popup shows: "Medium Article Detected" with redirect button
-5. You click "Redirect to Freedium"
-6. You're redirected to: `https://freedium-mirror.cfd/@techwriter/awesome-article`
+2. Extension badge turns **green (✓)** indicating Medium article detected
+3. You **click the extension icon** once
+4. A **new tab automatically opens** with: `https://freedium-mirror.cfd/@techwriter/awesome-article`
+5. Your original Medium article tab remains open for comparison
 
 ### How It Works
 

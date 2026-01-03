@@ -132,7 +132,8 @@ async function updatePopup() {
       redirectBtn.disabled = false;
       redirectBtn.onclick = () => {
         const freediumUrl = getFreediumUrl(tab.url);
-        chrome.tabs.update(tab.id, { url: freediumUrl });
+        // Open freedium in a new tab
+        chrome.tabs.create({ url: freediumUrl });
         window.close();
       };
       

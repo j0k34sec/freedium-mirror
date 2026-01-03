@@ -151,8 +151,8 @@ chrome.action.onClicked.addListener(async (tab) => {
     // For standard domains, path is just the pathname
     const freediumUrl = `https://freedium-mirror.cfd${path}`;
     
-    // Redirect to freedium
-    chrome.tabs.update(tab.id, { url: freediumUrl });
+    // Open freedium in a new tab
+    chrome.tabs.create({ url: freediumUrl });
   }
 });
 
