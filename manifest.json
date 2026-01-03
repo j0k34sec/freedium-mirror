@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Medium to Freedium Redirector",
+  "version": "1.0.0",
+  "description": "Redirects Medium articles to freedium-mirror.cfd for unrestricted access. Shows green badge when on Medium articles.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://medium.com/*",
+    "*://*.medium.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
+
