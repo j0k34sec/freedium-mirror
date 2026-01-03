@@ -112,6 +112,7 @@ The icons are already included, but if you need to regenerate them:
 
 2. **Check the Badge Indicator**
    - Look at the extension icon in your Chrome toolbar
+   - If you see a **😊 smiley emoji**, you're already on freedium-mirror.cfd
    - If you see a **green badge with a checkmark (✓)**, you're on a Medium article
    - If there's no badge, you're not on a Medium page
 
@@ -128,15 +129,19 @@ The icons are already included, but if you need to regenerate them:
 3. You **click the extension icon** once
 4. A **new tab automatically opens** with: `https://freedium-mirror.cfd/@techwriter/awesome-article`
 5. Your original Medium article tab remains open for comparison
+6. When you're on the freedium-mirror.cfd page, the badge shows **😊 smiley emoji** to indicate you're already on the freedium version
 
 ### How It Works
 
-- The extension monitors your active tab
+- The extension monitors your active tab and shows different badge indicators:
+  - **😊 Smiley emoji**: You're already on freedium-mirror.cfd
+  - **✓ Green checkmark**: You're on a Medium article (ready to redirect)
+  - **No badge**: You're not on a Medium page
 - When you visit a Medium article, the badge turns green. The extension detects:
   - **Standard Medium URLs**: `medium.com` or `*.medium.com` domains
   - **Custom Domain Medium Articles**: Articles hosted on custom domains (by checking page content for Medium indicators)
-- Clicking the extension icon opens a popup showing the current status
-- The redirect button converts the Medium URL to the freedium-mirror.cfd format:
+- Clicking the extension icon directly opens the freedium-mirror.cfd version in a new tab
+- The redirect converts the Medium URL to the freedium-mirror.cfd format:
   - `https://medium.com/@user/article` → `https://freedium-mirror.cfd/@user/article`
   - `https://username.medium.com/article` → `https://freedium-mirror.cfd/article`
   - `https://customdomain.com/article` → `https://freedium-mirror.cfd/https://customdomain.com/article` (for custom domains)

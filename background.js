@@ -10,6 +10,16 @@ function isMediumUrl(url) {
   }
 }
 
+// Check if URL is from freedium-mirror.cfd
+function isFreediumUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname === 'freedium-mirror.cfd' || urlObj.hostname.endsWith('.freedium-mirror.cfd');
+  } catch (e) {
+    return false;
+  }
+}
+
 // Function to detect Medium articles by checking page content
 // This will be injected into pages to check for Medium indicators
 function detectMediumInPage() {
@@ -107,15 +117,23 @@ async function checkIfMediumArticle(tabId, url) {
 
 // Update badge based on current tab
 async function updateBadge(tabId, url) {
-  const isMedium = await checkIfMediumArticle(tabId, url);
-  
-  if (isMedium) {
-    // Set green badge with checkmark
-    chrome.action.setBadgeText({ text: '✓', tabId: tabId });
-    chrome.action.setBadgeBackgroundColor({ color: '#00ff00', tabId: tabId });
+  // Check if on freedium-mirror.cfd first (highest priority)
+  if (isFreediumUrl(url)) {
+    // Set smiley emoji badge
+    chrome.action.setBadgeText({ text: '😊', tabId: tabId });
+    chrome.action.setBadgeBackgroundColor({ color: '#4caf50', tabId: tabId });
   } else {
-    // Clear badge
-    chrome.action.setBadgeText({ text: '', tabId: tabId });
+    // Check if on Medium article
+    const isMedium = await checkIfMediumArticle(tabId, url);
+    
+    if (isMedium) {
+      // Set green badge with checkmark
+      chrome.action.setBadgeText({ text: '✓', tabId: tabId });
+      chrome.action.setBadgeBackgroundColor({ color: '#00ff00', tabId: tabId });
+    } else {
+      // Clear badge
+      chrome.action.setBadgeText({ text: '', tabId: tabId });
+    }
   }
 }
 
@@ -143,6 +161,11 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
 // Handle extension icon click - redirect to freedium
 chrome.action.onClicked.addListener(async (tab) => {
   if (!tab.url) return;
+  
+  // Don't redirect if already on freedium-mirror.cfd
+  if (isFreediumUrl(tab.url)) {
+    return;
+  }
   
   const isMedium = await checkIfMediumArticle(tab.id, tab.url);
   if (isMedium) {
